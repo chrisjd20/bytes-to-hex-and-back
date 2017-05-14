@@ -16,6 +16,12 @@ function Convert-AsciiToHex(){
     return $c -replace ' '
 }
 
+function Convert-HexToAscii() {
+    Param($a)
+    $a -split '(..)' | ? { $_ }  | forEach {[char]([convert]::toint16($_,16))} | forEach {$result = $result + $_}
+    return $result
+}
+
 function Convert-BytesToHEX {
     param($DEC)
     $tmp = ''
